@@ -1,0 +1,30 @@
+  .mobile-menu{
+    background-color: rgba(255,174,0,.7);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 9;
+    color: #000;
+    .hamburger{
+      padding: 5px 20px;  
+    }
+    a{
+      font-size: 30px;
+      font-weight: bold;
+      &:hover{
+        text-decoration: none;
+        color: #000; 
+      }
+    }
+    .hidden-menu{
+      a{
+        font-size: 20px;
+        color: #000;
+        &:hover{
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+    }
+  }
