@@ -6,8 +6,8 @@ Disallow: /wp-includes/
 Disallow: /page/
 Disallow: /wp-login.php/
 Disallow: /wp-config.php/
-Host: http://family.ubikom.biz/
-Sitemap: http://family.ubikom.biz/sitemap.xml
+Host:
+Sitemap:
 
 User-agent: *
 Disallow: /wp-admin/
