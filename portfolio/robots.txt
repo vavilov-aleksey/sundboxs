@@ -1,0 +1,14 @@
+User-agent: Yandex
+
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /page/
+Disallow: /wp-login.php/
+Disallow: /wp-config.php/
+Host:
+Sitemap:
+
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /wp-config.php/
