@@ -1,0 +1,37 @@
+/* Html/Jade */
+
+.checkbox
+     input(type="checkbox" id="check")
+     label(for="check") Нажимая кнопку "Далее" вы даете свое согласие на обработку персональных данных
+     
+     
+/* Css */
+
+.checkbox {
+      position:relative;
+      padding-left: 30px;
+    }
+    
+.checkbox input[type=checkbox] {
+      display:none;
+    }
+    
+.checkbox label:before {
+      content:'';
+      display:block;
+      height:16px;
+      width:16px;
+      outline:1px solid $color-blue;
+      position:absolute;
+      top:5px;
+      left:0;
+    }
+    
+.checkbox input[type=checkbox]:checked + label:before {
+      outline:1px solid $color-blue;
+      border:3px solid #fff;
+      width:16px;
+      height:16px;
+      background-color:$color-blue;
+    }
+
