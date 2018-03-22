@@ -1,0 +1,18 @@
+Фиксированный блок, при прокрутке
+
+var navbar = $('.icon-soc');
+    var wrapper = $('.page-blog-entry__blog');
+    var navbarWrapper = $('.icon-soc__wrapper');
+
+    $(window).scroll(function(){
+        var nsc = $(document).scrollTop();//Считает сколько пикселей пролистал
+        var bp1 = wrapper.offset().top;//Ищет коогдинату
+        var bp2 = wrapper.outerHeight() + bp1;
+        var bp3 = navbarWrapper.outerHeight();
+
+        if (nsc + 120 >=bp1) {  navbar.addClass('icon-soc-fixed').removeClass('icon-soc-absolute icon-soc-not-scroll'); }
+        else { navbar.addClass('icon-soc-absolute').removeClass('icon-soc-fixed'); }
+        if (nsc>=bp2  - bp3 - 120) { navbar.css({'bottom': bp3}).addClass('icon-soc-not-scroll'); }
+    });
+    
+
