@@ -1,0 +1,9 @@
+Console browser:
+
+var msg;
+if (window.jQuery) {
+    msg = 'You are running jQuery version: ' + jQuery.fn.jquery;
+} else {
+    msg = 'jQuery is not installed';
+}
+alert(msg);
