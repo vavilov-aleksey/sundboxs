@@ -1,0 +1,7 @@
+window.addEventListener('keydown', (event)=>{
+                if(event.keyCode == 27){
+                    innerCalendarOpen.classList.add('d-none');
+                }
+            });
+
+При клике на esc, выполняем какое либо действие
