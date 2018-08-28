@@ -1,0 +1,21 @@
+<style>
+  h1 {
+    position: relative;
+    overflow: hidden;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+  }
+  h1:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    border-top: 2px solid #4e4e4e;   
+    margin-top: .6em;
+    margin-left: .4em;
+  }
+</style>
+
+<h1>Продукция</h1>
