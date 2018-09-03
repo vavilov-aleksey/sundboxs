@@ -1,0 +1,6 @@
+Добавить стили для классов начинающихся одинаково.
+Пример: class='e-paysystem__mir',class='e-paysystem__mc',class='e-paysystem__visa'.
+Стили: [class*="e-paysystem"] {
+            width: 56px;
+            height: 28px;
+        }
