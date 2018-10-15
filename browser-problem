@@ -1,0 +1,259 @@
+Microsoft Edge
+CSS медиа-запрос:
+@supports (-ms-ime-align: auto) {} 
+_:-ms-lang(x), _:-webkit-full-screen, .selector {}
+JavaScript условие:
+if (/Edge\/\d./i.test(navigator.userAgent)) ;
+
+Проблема: ужасная реализация position: sticky, блок прилипает и дергается при прокрутке.
+Решение: Для Edge и IE 11 использовать polyfill (position: fixed).
+
+
+
+Microsoft Internet Explorer 10, 11
+CSS медиа-запрос:
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {}
+JavaScript условие:
+if(/MSIE 10/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent)) ;
+
+Проблема: Flexbox имеет свойство min-height с любым значением. Блоки внутри него не позиционируются при помощи align-items.
+Решение 1: min-height заменить на height.
+Решение 2: расчет позиционирования через js при загрузке страницы, повторный расчет при событии onresize.
+Решение 3: https://codepen.io/chriswrightdesign/pen/emQNGZ/
+
+Проблема: Flexbox имеет свойство min-height с любым значением. Блоки внутри не растягиваются при помощи flex-grow: 1.
+Решение 1: min-height заменить на height.
+Решение 2: расчет высот внутренних блоков через js при загрузке страницы, повторный расчет при событии onresize.
+
+Проблема: не работает автоматическая расстановка ячеек в Grid Layout.
+Решение: https://gitlab.com/semakov_andrey/fast-autoplacement
+
+Проблема: svg элемент на странице не имеет свойства classList, следовательно не имеет методов добавления/удаления/проверки класса.
+Решение: работать с классами через setAttribute.
+
+Mozilla FireFox
+CSS медиа-запрос:
+@-moz-document url-prefix() {
+  .selector {
+  }
+}
+
+Проблема: процентные свойства margin-top, margin-bottom, padding-top, padding-bottom блока, вложенного во Flexbox, рассчитываются от высоты Flexbox. Невозможно задать высоту блока, пропорционально зависящую от ширины.
+Решение: создание дополнительного контейнера (в примере 16:9)
+div(style=”display: flex;”)
+  div(style=”width: 25%;”)
+    div(style=”padding-top: 56.25%; height: 0;”)
+
+
+
+Safari iOS
+Javascript условие:
+if(navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) ;
+
+Проблема: overflow: hidden не применяется к html и body.
+Решение: применять overflow: hidden к контейнеру-обёртке.
+
+Проблема: при использовании свойства overflow-x: auto и широкого вложенного блока (например таблицы) не появляется горизонтальный скроллинг.
+Решение: 
+-webkit-overflow-scrolling: touch;
+
+Проблема: плавает курсор ввода при прокрутке страницы, если поле ввода находится в блоке position: fixed (например модальное окно).
+Частичное решение: применение position: fixed к body.
+Частичное решение: баг был устранён частично в iOS 11.3.
+
+Проблема: увеличение страницы при нажатии на поле ввода, если шрифт поля меньше 16px.
+Решение: 
+<meta name="viewport" content="user-scalable=0">
+
+Проблема: не показывается состояние active у ссылок. Зависает hover при клике на ссылку.
+Решение:
+document.addEventListener('touchstart', () => {});
+
+Проблема: градиент в прозрачность по умолчанию проходит через черный цвет.
+Решение: rgba(255, 255, 255, 0.01)
+
+Проблема: пустые поля сверху и снизу сайта, если тянуть сайт.
+Решение: заполнить их фоновым цветом.
+
+Проблема: увеличивается размер шрифта сам по себе. Сафари думает, что текст слишком мелкий.
+Решение: -webkit-text-size-adjust: none; для body.
+
+
+Реализация модальных окон
+
+Общие рекомендации:
+1. Для удобства использования желательно использовать полноэкранные модальные окна на мобильных устройствах.
+2. Не следует применять position: fixed для создания модального окна - баг с прокруткой такого окна, а также с height: 100vh в iOS Safari.
+3. Не следует применять overflow: hidden при открытии модального окна к html или body - не работает в iOS Safari, основная страница будет прокручиваться в фоне.
+
+Решение:
+1. Отдельный контейнер для контента сайта.
+2. Отдельный контейнер для модальных окон.
+3. При открытии модального окна контейнеру сайта добавляем свойство
+overflow: hidden;
+4. При открытии модального окна добавляем контейнеру модальных окон свойство
+display: block или flex;
+5. При открытии модального окна записываем новый url через history api.
+6. Контейнер модальных окон должен иметь свойства по умолчанию:
+position: absolute;
+7. Модальное окно внутри контейнера должно иметь свойства
+overflow: auto;
+-webkit-overflow-scrolling: touch;
+8. При закрытии модального окна делаем все в обратном порядке, записываем новый url.
+
+Прочее:
+1. Крестик закрытия окна можно позиционировать внутри контейнера или внутри самого окна как попало.
+2. То же самое и с оверлеем модальных окон.
+3. Любые элементы с position: fixed внутри контейнера для контента сайта прилипают и на них не работает прокрутка сайта. Решение: использовать position: sticky. Для IE и Edge использовать polyfill.
+
+
+
+Стилизация
+
+Рендеринг текста
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+Прогресс
+progress {
+  background-color: green;
+  border: 0;
+  &::-webkit-progress-bar {
+    background-color: green;
+  }
+  &::-webkit-progress-value {
+    background-color: black;
+  }  
+  &::-moz-progress-bar {
+    background-color: black;
+  }
+  &::-ms-fill {
+    background-color: black;
+    border: 0;
+  }
+}
+
+Ползунок
+input[type="range"] {
+  width: 400px;
+  height: 40px;
+  -webkit-appearance: none;
+  padding: 0;
+  background-color: yellow;
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 14px;
+    background-color: red;
+    box-sizing: border-box;
+  }
+  &::-moz-range-track {
+    width: 100%;
+    height: 14px;
+    background-color: red;
+    box-sizing: border-box;
+  }
+  &::-ms-track {
+    width: 100%;
+    height: 14px;
+    background-color: red;
+    border: 0;
+    color: transparent;
+  }
+  &::-ms-fill-lower {
+    background-color: cyan;
+  }
+  &::-ms-fill-upper {
+    background-color: lime;
+  }
+  &::-webkit-slider-thumb {
+    width: 14px;
+    height: 14px;
+    background-color: purple;
+    -webkit-appearance: none;
+  }
+  &::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background-color: purple;
+    border: 0;
+    border-radius: 0;
+  }
+  &::-ms-thumb {
+    width: 14px;
+    height: 14px;
+    background-color: purple;
+    border: 0;
+  }
+  &:focus {
+    outline: 0;
+  }
+}
+
+Автозаполнение
+input {
+  &:-webkit-autofill {
+    transition: background-color 1s 5000s;
+    -webkit-text-fill-color: black;
+  }
+}
+
+Выделение текста
+.any-selector {
+  cursor: default;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+}
+
+.any-selector {
+  &::selection {
+   background-color: rgba(black, .99);
+   color: white;
+  }
+}
+
+Плейсхолдер
+.any-selector {
+  &::-webkit-input-placeholder {
+    color: black;
+  }
+  &::-moz-placeholder {
+    color: black;
+  }
+  &:-ms-input-placeholder {
+    color: black;
+  }
+}
+
+Фон области клика на телефонах
+html {
+  -webkit-tap-highlight-color: rgba(201, 224, 253, 0.8);
+}
+.any-selector {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+Удалить крестик очистки поля, значок показать пароль
+input {
+  &::-ms-clear,
+  &::-ms-reveal {
+    display: none;
+  }
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+}
+
+Удалить стрелочку в селектах
+select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  &::-ms-expand {
+    display: none;
+  }
+}
