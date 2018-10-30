@@ -1,7 +1,10 @@
 Microsoft Edge
 CSS медиа-запрос:
-@supports (-ms-ime-align: auto) {} 
-_:-ms-lang(x), _:-webkit-full-screen, .selector {}
+@supports (-ms-ime-align:auto) {
+    .selector {
+        property: value;
+    }
+}
 JavaScript условие:
 if (/Edge\/\d./i.test(navigator.userAgent)) ;
 
