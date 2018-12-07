@@ -5,3 +5,18 @@ window.addEventListener('keydown', (event)=>{
             });
 
 При клике на esc, выполняем какое либо действие
+
+При клике на пустую область
+window.addEventListener('click', function (event) {
+        if (!Element.prototype.matches) {
+
+            Element.prototype.matches = Element.prototype.matchesSelector ||
+                Element.prototype.webkitMatchesSelector ||
+                Element.prototype.mozMatchesSelector ||
+                Element.prototype.msMatchesSelector;
+
+        }
+        if (event.target.matches('.class') {
+            //Функция что нужно сделать
+        }
+    });
