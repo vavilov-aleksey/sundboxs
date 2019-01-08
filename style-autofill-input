@@ -1,0 +1,6 @@
+input {
+   //изменить стили автозаполнения
+    &:-internal-autofill-previewed, &:-internal-autofill-selected{
+      background-color: transparent!important;
+    }
+  }
