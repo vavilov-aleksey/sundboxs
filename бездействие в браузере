@@ -1,0 +1,24 @@
+let animation = true;
+                const inactivityTime = () => {
+                    animation = true;
+                    if(animation){
+                        let t;
+                        window.onload = resetTimer;
+                        // DOM Events
+                        document.onmousemove = resetTimer;
+                        document.onkeypress = resetTimer;
+
+                        const logout = () => {
+                            if(animation) funOpacityControl('opacity');
+                        };
+
+                        function resetTimer() {
+                            funOpacityControl('not-opacity');
+
+                            clearTimeout(t);
+                            t = setTimeout(logout, 1500)
+                        }
+                    }
+                };
+                
+                //Нужно доработать, посмотреть как работает можно на тасс-фото
