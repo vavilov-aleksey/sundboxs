@@ -1,6 +1,26 @@
-input {
-   //изменить стили автозаполнения
-    &:-internal-autofill-previewed, &:-internal-autofill-selected{
-      background-color: transparent!important;
-    }
+input[type='text'], input[type='password'] {
+  //изменить стили автозаполнения
+  &:-webkit-autofill {
+    transition: background-color 5000s ease-in-out 0s!important;
+    -webkit-text-fill-color: $color-white;
+    -webkit-transition: background-color 10000s ease-out;
+    -webkit-transition-delay: 9999s;
+    -webkit-box-shadow:0 0 0 50px #000 inset;
   }
+
+  &:-internal-autofill-previewed, &:-internal-autofill-selected{
+    background-color: transparent!important;
+    transition: background-color 5000s ease-in-out 0s!important;
+    -webkit-transition: background-color 10000s ease-out;
+    -webkit-transition-delay: 9999s;
+    -webkit-box-shadow:0 0 0 50px #000 inset;
+  }
+
+  &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active {
+    transition: background-color 10000s ease-in-out 0s!important;
+    background-color: transparent!important;
+    -webkit-transition: background-color 10000s ease-out;
+    -webkit-transition-delay: 9999s;
+    -webkit-box-shadow:0 0 0 50px #000 inset;
+  }
+}
