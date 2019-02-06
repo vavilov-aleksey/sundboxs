@@ -88,6 +88,14 @@ document.addEventListener('touchstart', () => {});
 Пример: http://prntscr.com/mf311o , так работате везде кроме сафари http://prntscr.com/mf31nk
 Решение: добавлять отдельные переменные http://prntscr.com/mf3274 и использовать только в сафари http://prntscr.com/mf32zr
 
+Проблема: иконка автозаполнения в input
+Решение: &::-webkit-credentials-auto-fill-button {
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+  }
+
 Реализация модальных окон
 
 Общие рекомендации:
