@@ -18,4 +18,15 @@ export default class Footer {
 
     if(this.siteNotify) this.siteNotify.style.right = `${this.scrollWidth}px`;
   }
+  
+  // Если понадобится делать по краям отступы
+  widthScroll(parent, element) {
+    this.scrollWidth = element.offsetWidth - parent.clientWidth;
+    this.siteNotify = element;
+
+    if (this.siteNotify) {
+      this.siteNotify.style.right = `${this.scrollWidth}px`;
+      this.siteNotify.style.width = `calc(100% - ${this.scrollWidth}px)`;
+    }
+  }
 }
