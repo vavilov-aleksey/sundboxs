@@ -56,6 +56,9 @@ if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chr
    alert("Browser is Safari");          
 }
 
+исправление части проблем
+https://habr.com/ru/post/332872/
+
 Проблема: overflow: hidden не применяется к html и body.
 Решение: применять overflow: hidden к контейнеру-обёртке.
 
