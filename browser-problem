@@ -56,6 +56,9 @@ if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chr
    alert("Browser is Safari");          
 }
 
+Проблема: преобразует номера в телефонные ссылки, если они даже не включены.
+Решение: добавить мета <meta name="format-detection" content="telephone=no">
+
 исправление части проблем
 https://habr.com/ru/post/332872/
 
