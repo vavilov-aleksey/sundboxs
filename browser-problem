@@ -1,3 +1,8 @@
+IOS:
+
+new Date('2019-07-01 00:00:00') - вернет invalid date. 
+Нужно заменить на new Date('2019-07-01 00:00:00'.replace(' ', 'T'))
+
 Microsoft Edge
 CSS медиа-запрос:
 @supports (-ms-ime-align:auto) {
