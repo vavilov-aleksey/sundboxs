@@ -1,0 +1,11 @@
+ol {
+  list-style: none;
+  counter-reset: section;
+  
+  li {
+    &:before {
+      counter-increment: section;
+      content: counter(section);
+    }
+  }
+}
